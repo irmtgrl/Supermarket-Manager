@@ -1,0 +1,35 @@
+{
+  "name": "supermarket-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irmtgrl/Supermarket-Manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/irmtgrl/Supermarket-Manager/issues"
+  },
+  "homepage": "https://github.com/irmtgrl/Supermarket-Manager#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0",
+    "vite": "^8.0.14",
+    "vite-plugin-symfony": "^8.2.4"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0"
+  }
+}

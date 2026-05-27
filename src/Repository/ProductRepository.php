@@ -36,6 +36,28 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLowStockProducts(int $treshold = 10): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p, SUM(i.quantity) AS totalStock')
+            ->join('p.inventoryItems', 'i')
+            ->groupBy('p.id')
+            ->having('SUM(i.quantity) < :treshold')
+            ->setParameter('treshold', $treshold)
+            ->orderBy('totalStock', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findNewestProducts(): array 
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 }
 
 

@@ -19,6 +19,7 @@ class ProductDTOFactory
         return new ProductDTO(
             id: $product->getId(),
             name: $product->getName(),
+            barcode: $product->getBarcode(),
             description: $product->getDescription(),
             price: $product->getPrice(),
             categoryName: $product->getCategory()->getName(),
