@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Product{% endblock %}
+
+{% block body %}
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Create New Product</h1>
+
+    {{ form_start(form) }}
+
+        <div class="space-y-4">
+            <div>
+                {{ form_row(form.name, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+            </div>
+            
+            <div>
+                {{ form_row(form.barcode, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+            </div>
+
+            <div>
+                {{ form_row(form.description, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+            </div>
+
+            <div>
+                {{ form_row(form.price, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+            </div>
+            
+            <div>
+                {{ form_row(form.category, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+            </div>
+
+            <button type="submit" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded shadow">
+                Save Product
+            </button>
+        </div>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

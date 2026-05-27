@@ -1,0 +1,35 @@
+<table class="w-full bg-white rounded shadow overflow-hidden">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="text-left p-4">
+                Product
+            </th>
+
+            <th class="text-left p-4">
+                Quantity
+            </th>
+
+            <th class="text-left p-4">
+                Expiration Date
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in inventoryItems %}
+            <tr class="border-t">
+                <td class="p-4">
+                    {{ item.product.name }}
+                </td>
+
+                <td class="p-4">
+                    {{ item.quantity }}
+                </td>
+
+                <td class="p-4 text-red-500">
+                    {{ item.expirationDate|date('Y-m-d') }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

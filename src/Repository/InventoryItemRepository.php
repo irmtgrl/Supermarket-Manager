@@ -36,4 +36,15 @@ class InventoryItemRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function countExpiringSoon(int $extraDays = 7): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('COUNT(i.id)')
+            ->where('i.expirationDate BETWEEN :today AND :future')
+            ->setParameter('today', new \DateTimeImmutable())
+            ->setParameter('future', new \DateTimeImmutable("+$extraDays days"))
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
