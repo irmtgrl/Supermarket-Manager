@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+        </div>
+    {% endif %}
+    
+    <div class="flex flex-col max-w-80">
+        <h1 class="font-semibold text-xl mb-4">Please sign in</h1>
+        <label for="inputEmail">Email</label>
+        <input 
+            type="email" 
+            value="{{ last_username }}" 
+            name="email" 
+            id="inputEmail" 
+            class="form-control bg-white rounded-sm" 
+            autocomplete="email" 
+            required 
+            autofocus>
+    
+        <label for="inputPassword">Password</label>
+        <input 
+            type="password" 
+            name="password" 
+            id="inputPassword" 
+            class="form-control bg-white rounded-sm" 
+            autocomplete="current-password" 
+            required>
+    
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+    
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    
+        <button class="btn btn-lg btn-primary bg-sky-800 rounded-sm text-white p-2" type="submit">
+            Sign in
+        </button>
+
+        <p>No Account?</p>
+
+        <a 
+            class="btn text-center btn-lg btn-primary border border-sky-800 rounded-sm text-sky-800 p-2" 
+            href="/register">
+            Register
+        </a>
+    </div>
+</form>
+{% endblock %}

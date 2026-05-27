@@ -12,10 +12,23 @@
             <a href="/inventory/expiring">
                 Expiring
             </a>
-
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="/dashboard">
                 Dashboard
             </a>
+            {% endif %}
+
+            {% if app.user %}
+            <a href="/logout">
+                Logout
+            </a>
+            {% else %}
+            <a href="/login">
+                Login
+            </a>
+            {% endif %}
+
+
         </div>
     </div>
 </nav>

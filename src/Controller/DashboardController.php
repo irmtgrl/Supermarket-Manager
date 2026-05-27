@@ -10,6 +10,7 @@ use App\Services\DashboardService;
 final class DashboardController extends AbstractController
 {
     #[Route('/dashboard', name: 'dashboard')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(
         DashboardService $dashboardService
     ): Response {
