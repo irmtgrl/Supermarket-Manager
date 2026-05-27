@@ -16,12 +16,12 @@ class InventoryItemRepository extends ServiceEntityRepository
         parent::__construct($registry, InventoryItem::class);
     }
 
-    public function findExpiredItems(): array
+    public function findExpired(): array
     {
         return $this->createQueryBuilder('i')
             ->where('i.expirationDate < :today')
             ->setParameter('today', new \DateTimeImmutable())
-            ->orderBy('i.expitationDate', 'ASC')
+            ->orderBy('i.expirationDate', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -29,9 +29,9 @@ class InventoryItemRepository extends ServiceEntityRepository
     public function findExpiringSoon(int $extraDays = 7): array
     {
         return $this->createQueryBuilder('i')
-            ->where('i.expirationDate < BETWEEN :today AND :future')
+            ->where('i.expirationDate BETWEEN :today AND :future')
             ->setParameter('today', new \DateTimeImmutable())
-            ->setParameter('future', new \DateTimeImmutable("${$days} days"))
+            ->setParameter('future', new \DateTimeImmutable("+$extraDays days"))
             ->orderBy('i.expirationDate', 'ASC')
             ->getQuery()
             ->getResult();
